@@ -15,6 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies
+          command: npm install
+      - run:
           name: Run unit tests
           command: npm test
   deploy:
