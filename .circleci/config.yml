@@ -14,12 +14,18 @@ jobs:
       - image: circleci/node:12.1.0
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command: npm install
       - run:
           name: Run unit tests
           command: npm test
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
   deploy:
     docker:
       - image: circleci/node:12.1.0
