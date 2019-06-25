@@ -19,7 +19,7 @@ jobs:
           command: npm test
   deploy:
     docker:
-      - image: alpine:3.7
+      - image: circleci/node:12.1.0
     environment:
       HEROKU_APP_NAME: greetings-api
     steps:
